@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Boolflix by Tiba</title>
+
+  <!-- Font Family -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
+  <!-- Bootstrap v4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Css -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Axios -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'>
+  </script>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="container-app white">
+        <header class="overlay">
+          <div class="content-header">
+              <h1 class="logo"><a href="#">BoolFlix</a></h1>
+            <div class="content-title-input">
+              <div class="title-header">
+                <h1>Film, serie TV e tanto altro.
+                  <br>
+                  Senza limiti.
+                </h1>
+                <p>Guarda ciò che vuoi ovunque. Disdici quando vuoi.</p>
+              </div>
+              <div class="box-search">
+                <input class="input-search" v-model="searchInput" type="text" value="" placeholder="Cerca..." @keyup.enter="searchFilm">
+                <button class="btn btn-search white" type="button" name="button" @click="searchFilm">Cerca &#8250;</button>
+              </div>
+            </div>
+          </div>
+        </header>
+      <main>
+        <h2 class="search-results-user" v-show="resultsMovie != 0">{{resultsMovie.length}} risultati per: "{{searchInput}}"</h2>
+        <div class="container-card">
+          <div class="results-for-watching">
+            <h2 v-show="containFilms('movie')">Film disponibili: </h2>
+          </div>
+          <div class="content-film">
+            <p class="p-no-results" v-show="resultsMovie.length == 0 && startSearch == true">Nessun risultato trovato per {{searchInput}}...</p>
+            <div class="card" v-for="(card,indexCard) in resultsMovie" @mouseover="indexMovie = indexCard" @mouseout="indexMovie = null" v-show="card.media_type == 'movie'">
+              <img class="img-card" v-bind:src="(card.poster_path ? 'https://image.tmdb.org/t/p/w400' + card.poster_path : 'img/imgNot.jpg')">
+              <div class="retro-card" v-show="indexMovie == indexCard">
+                <h3 class="title-card">{{card.title}}</h3>
+                <h4 v-show="card.original_title != card.title" class="title-card">{{card.original_title}}</h4>
+                <div class="flags">
+                  <img v-bind:src="'img/'+ card.original_language +'.png'" alt="">
+                  <i v-else class="fas fa-flag"></i>
+                </div>
+                <p v-if="card.overview != 0" class="overview-card">{{card.overview}}</p>
+                <p v-else= class="overview-card">Trama non disponibile</p>
+                <div class="vote-stars">
+                  <p><span>Voto:</span><i class="fas fa-star" v-for="num in 5" v-bind:class="{'star-grey' : Math.round((card.vote_average/2)) < num}">
+                  </i></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="results-for-watching">
+            <h2 v-show="containFilms('tv')">Serie tv disponibili: </h2>
+          </div>
+          <div class="content-series-tv">
+            <div class="card" v-for="(card,indexCard) in resultsMovie" @mouseover="indexMovie = indexCard" @mouseout="indexMovie = null" v-if="card.media_type == 'tv'">
+              <img class="img-card" v-bind:src="(card.poster_path ? 'https://image.tmdb.org/t/p/w400' + card.poster_path : 'img/imgNot.jpg')">
+              <div class="retro-card" v-show="indexMovie == indexCard">
+                <h3 class="title-card">{{card.title}}</h3>
+                <h4 v-show="card.original_title != card.title" class="title-card">{{card.original_title}}</h4>
+                <p v-if="card.overview != 0" class="overview-card">{{card.overview}}</p>
+                <p v-else class="overview-card">Trama non disponibile</p>
+                <div class="flags">
+                  <img v-bind:src="'img/'+ card.original_language +'.png'" alt="">
+                  <i v-else class="fas fa-flag"></i>
+                </div>
+                <div class="vote-stars">
+                  <p class="p-star"><span>Voto: </span><i class="fas fa-star" v-for="index in 5"></i></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+header {
+  background-image: url('img/bgFlix.jpg');
+  height: 600px;
+  border-bottom: 5px solid #333;
+  position: relative;
+}
+
+.white {
+  color: white;
+}
+
+.btn {
+  background-color: red;
+  border: none;
+  font-weight: bold;
+  outline: none;
+}
+
+.btn-search {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.content-header {
+  position: relative;
+  z-index: 10;
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.logo a{
+ padding: 20px 40px;
+ height: 70px;
+ color: red;
+ display: inline-block;
+ text-decoration: none;
+}
+
+.content-title-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.title-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.title-header > p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.box-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.input-search {
+  padding: 20px;
+  font-size: 20px;
+  outline: none;
+  width: 25%;
+  border-radius: 5px;
+  border: none;
+}
+
+.container-card {
+  padding: 50px;
+  justify-content: center;
+}
+
+.content-film,
+.content-series-tv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.results-for-watching > h2,
+.p-no-results {
+  font-size: 25px;
+}
+
+.search-results-user {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.card {
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  margin: 30px 30px;
+  text-align: center;
+  border: 2px solid #A5A5A5;
+}
+
+.img-card {
+  height: 450px;
+  width: 320px;
+  object-fit: cover;
+}
+
+.title-card {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+.overview-card {
+  font-size: 18px;
+}
+
+.retro-card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 450px;
+  width: 320px;
+  overflow: auto;
+  transition: 2s;
+}
+
+.flags > img {
+  height: 40px;
+  margin: 10px;
+}
+
+.vote-stars {
+ padding: 20px;
+ height: 100%;
+ text-align: center;
+}
+
+.vote-stars > p {
+display: flex;
+margin-top: 10px;
+}
+
+.fa-star {
+  color: yellow;
+}
+
+.fa-star:first-of-type {
+  padding-left: 10px;
+}
+
+.star-grey {
+  color: grey;
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #231A24;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #474A51;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-button {
+  background-color: #474A51;
+}
